@@ -1,8 +1,247 @@
-body {
-    margin: 0;
-    padding: 0;
+:root {
+  --bg: #071426;
+  --card: #081220;
+  --muted: #9aa6b2;
+  --accent: #6ee7b7;
+  --panel-width: 380px;
+  font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial;
+  color-scheme: dark;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#map,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #04121e, #071426);
+  color: #e8f6ff;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+/* Top bar */
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  flex-shrink: 0;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#searchBox {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  min-width: 220px;
+  background: transparent;
+  color: inherit;
+}
+
+#locateBtn {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #06211a;
+  cursor: pointer;
+}
+
+/* App layout */
+#app {
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+/* Sidebar */
+#sidebar {
+  width: var(--panel-width);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent);
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  overflow-y: auto;
+  transition: transform 260ms ease;
+  transform: translateX(0);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar.closed {
+  transform: translateX(100%);
+}
+
+#closeSidebar {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.panel-section {
+  margin-bottom: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Header Row */
+.header-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.title-block p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.flag {
+  width: 64px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Visuals */
+.visuals {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badges span {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Facts */
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.facts li {
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.02);
+}
+
+/* Links */
+.links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.links a {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/* Map container */
+#mapContainer {
+  flex: 1;
+  position: relative;
+}
+
 #map {
-    width: 100vw;
-    height: 100vh;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #sidebar {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    bottom: 48px;
+    z-index: 1200;
+  }
+  #sidebar.closed {
+    transform: translateX(100%);
+  }
+}
+
+/* Leaflet popup style */
+.leaflet-popup-content-wrapper {
+  background: linear-gradient(180deg, #021226, #062739);
+  color: #e8f6ff;
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
 }

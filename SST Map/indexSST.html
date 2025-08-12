@@ -1,16 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CurricuLens Interactive World Map</title>
-    <link rel="stylesheet" href="styleSST.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World Capitals Explorer</title>
+
+<!-- Leaflet CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="styleSST.css" />
+
+<!-- PapaParse (CSV parsing) -->
+<script
+  src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"
+  defer
+></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<!-- Our script -->
+<script src="scriptsSST.js" defer></script>
 </head>
 <body>
-    <div id="map"></div>
+  <header class="topbar">
+    <div class="brand">🌍 Capitals Explorer</div>
+    <div class="controls">
+      <input id="searchBox" placeholder="Search capital or country..." />
+      <button id="locateBtn" title="Go to my location">📍</button>
+    </div>
+  </header>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="scriptsSST.js" defer></script>
+  <div id="app">
+    <aside id="sidebar" class="closed">
+      <button id="closeSidebar" title="Close">✕</button>
+
+      <div id="intro" class="panel-section">
+        <h2>Click a capital on the map</h2>
+        <p>
+          Explore quick facts, history & visuals. Built with REST Countries +
+          Wikipedia + OpenStreetMap.
+        </p>
+      </div>
+
+      <div id="details" class="panel-section hidden">
+        <div class="header-row">
+          <div class="title-block">
+            <h1 id="titleName">City, Country</h1>
+            <p id="subtitle" class="muted">Coordinates · region · timezone</p>
+          </div>
+          <img id="flagImg" class="flag" alt="flag" />
+        </div>
+
+        <div class="visuals">
+          <img id="thumbnail" class="thumb hidden" alt="thumbnail" />
+          <div id="badgeRow" class="badges">
+            <span id="populationBadge">Population —</span>
+            <span id="areaBadge">Area —</span>
+            <span id="timezoneBadge">Timezone —</span>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Quick Facts</h3>
+          <ul id="factsList" class="facts"></ul>
+        </div>
+
+        <div class="panel-section">
+          <h3>History & Geography</h3>
+          <div id="historyText" class="muted"></div>
+        </div>
+
+        <div class="panel-section">
+          <h3>More</h3>
+          <div class="links">
+            <a id="wikiFull" target="_blank" rel="noopener">Open Wikipedia page</a>
+            <a id="countryMap" target="_blank" rel="noopener">Open country on OSM</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main id="mapContainer">
+      <div id="map"></div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    Data: REST Countries + Wikimedia | Map: Leaflet / OSM
+  </footer>
 </body>
 </html>

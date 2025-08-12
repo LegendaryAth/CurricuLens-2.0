@@ -29,3 +29,28 @@ document.addEventListener("DOMContentLoaded", () => {
         usernameDisplay.textContent = user;
     }
 });
+
+const navLinks = document.querySelector('.hero');
+
+navLinks.addEventListener('mousemove', function(e) {
+  // Create ripple element
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple');
+
+  // Set size of ripple
+  const size = 60;
+  ripple.style.width = ripple.style.height = size + 'px';
+
+  // Position ripple at mouse coords relative to navLinks container
+  const rect = navLinks.getBoundingClientRect();
+  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+  // Append ripple
+  navLinks.appendChild(ripple);
+
+  // Remove ripple after animation ends
+  ripple.addEventListener('animationend', () => {
+    ripple.remove();
+  });
+});

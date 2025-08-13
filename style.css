@@ -310,7 +310,9 @@ body {
   background: #0f172a;
   color: #38bdf8;
   font-weight: 700;
-  padding: 15px 38px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 20px 38px;
   border-radius: 28px;
   font-size: 1.15rem;
   box-shadow: 0 12px 28px rgb(56 189 248 / 0.35);

@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quiz-container {
+    background: rgba(25, 25, 25, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 0 20px #00ffcc;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #00ffcc;
+    margin-bottom: 10px;
+}
+
+.progress-container {
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 8px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #00ffcc;
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+.timer {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 15px;
+    animation: fadeIn 0.5s ease;
+}
+
+.options {
+    display: grid;
+    gap: 10px;
+}
+
+.option {
+    padding: 10px;
+    background: #1c1c1c;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    background: #222;
+    border-color: #00ffcc;
+}
+
+.option.correct {
+    border-color: #00ff00;
+}
+
+.option.wrong {
+    border-color: #ff3333;
+}
+
+.explanation {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+button {
+    background: #00ffcc;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+button:hover:enabled {
+    background: #00e6b3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}

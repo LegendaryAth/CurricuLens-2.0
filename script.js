@@ -17,6 +17,7 @@ function login() {
 }
 
 // Show profile if logged in
+// Show profile if logged in
 document.addEventListener("DOMContentLoaded", () => {
     const user = localStorage.getItem("curriculensUser");
     const authBtn = document.getElementById("auth-btn");
@@ -24,10 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const usernameDisplay = document.getElementById("username-display");
 
     if (user && profile && authBtn) {
+        // Hide sign-in button
         authBtn.classList.add("hidden");
+
+        // Show profile info
         profile.classList.remove("hidden");
         usernameDisplay.textContent = user;
     }
+});
+
+document.getElementById("profile").addEventListener("click", function() {
+    // Here you can also clear any saved login data from localStorage if needed
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "signin.html";
 });
 
 const navLinks = document.querySelector('.hero');

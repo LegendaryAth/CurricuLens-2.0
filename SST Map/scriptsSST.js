@@ -62,7 +62,7 @@ function n(x) {
 }
 
 // Load CSV and place markers
-Papa.parse('capitals.csv', {
+Papa.parse('capitals_with_india.csv', {
   download: true,
   header: true,
   skipEmptyLines: true,

@@ -1,115 +1,394 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0f0f0f;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* ==============================
+   CurricuLens Quiz — Modern Light-Blue Theme
+   ============================== */
+:root {
+  --bg-top: #f7fbff;
+  --bg-bottom: #4a90e2;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --accent: #36b7ff;
+  --accent-2: #23d0b3;
+  --text: #0b1a2f;
+  --muted: #657080;
+  --success: #16a34a;
+  --error: #ef4444;
+  --radius: 14px;
+  --transition: all 0.25s cubic-bezier(.4,0,.2,1);
 }
 
-.quiz-container {
-    background: rgba(25, 25, 25, 0.9);
-    padding: 20px;
-    border-radius: 15px;
-    max-width: 700px;
-    width: 90%;
-    box-shadow: 0 0 20px #00ffcc;
-    animation: fadeIn 0.6s ease-in-out;
+/* ==============================
+   Reset + Body
+   ============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 15px;
+html, body {
+  height: 100%;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 12px;
+  color: var(--text);
 }
 
-h1 {
-    font-size: 28px;
-    color: #00ffcc;
-    margin-bottom: 10px;
+/* ==============================
+   Container + Notch
+   ============================== */
+.container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+  align-self: center;
 }
 
-.progress-container {
-    background: #333;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 8px;
-    margin-bottom: 10px;
+.container::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 18px;
+  background: rgba(255,255,255,0.1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.12);
 }
 
-.progress-bar {
-    height: 8px;
-    background: #00ffcc;
-    width: 0%;
-    transition: width 0.4s ease;
+/* ==============================
+   Header / Quiz Info
+   ============================== */
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.counter {
+  font-weight: 700;
+  color: var(--muted);
 }
 
 .timer {
-    font-size: 16px;
-    margin-bottom: 15px;
+  font-weight: 600;
+  color: var(--muted);
 }
 
-.question {
-    font-size: 20px;
-    margin-bottom: 15px;
-    animation: fadeIn 0.5s ease;
+/* ==============================
+   Question Card
+   ============================== */
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.options {
-    display: grid;
-    gap: 10px;
+.question-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #e7fbff;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ==============================
+   Options
+   ============================== */
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .option {
-    padding: 10px;
-    background: #1c1c1c;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: var(--transition);
 }
 
 .option:hover {
-    background: #222;
-    border-color: #00ffcc;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  background: rgba(54,183,255,0.05);
+}
+
+.option .text {
+  color: #dff6ff;
+  font-weight: 600;
+}
+
+.option.selected {
+  background: linear-gradient(90deg, rgba(35,208,179,0.12), rgba(54,183,255,0.08));
+  border-color: rgba(54,183,255,0.15);
 }
 
 .option.correct {
-    border-color: #00ff00;
+  background: rgba(22,163,74,0.08);
+  border-color: rgba(22,163,74,0.25);
 }
 
 .option.wrong {
-    border-color: #ff3333;
+  background: rgba(239,68,68,0.05);
+  border-color: rgba(239,68,68,0.25);
 }
 
-.explanation {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #aaa;
+/* ==============================
+   Buttons
+   ============================== */
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
 }
 
-button {
-    background: #00ffcc;
-    color: #000;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+/* ==============================
+   Navigation Row
+   ============================== */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ==============================
+   Results
+   ============================== */
+#result {
+  padding: 20px;
+}
+
+.score {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.review-list {
+  margin-top: 14px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* ==============================
+   Utilities
+   ============================== */
+.hidden { display: none !important; }
+.muted { color: var(--muted); font-size: 0.95rem; }
+.center { text-align: center; }
+
+/* ==============================
+   Responsive
+   ============================== */
+@media (max-width: 700px) {
+  .container { padding: 16px; margin: 8px; }
+  .question-text { font-size: 1rem; }
+  header h1 { font-size: 1.4rem; }
+}
+
+/* ==============================
+   Answer Buttons (Alternative Style)
+   ============================== */
+.options button {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  margin: 6px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  background: rgba(241,246,255,0.9);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.options button:hover {
+  background: #e1eeff;
+  border-color: var(--accent);
+}
+
+.options button.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ==============================
+   Darker Container BG
+   ============================== */
+.container {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(25,78,161,0.85)); /* Slightly darker blue */
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius);
+    padding: 26px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==============================
+   Buttons — interactive, visible
+   ============================== */
+button, .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: var(--radius);
+    padding: 12px 20px;
     cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
+    transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    border: none;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-button:disabled {
-    background: #555;
-    cursor: not-allowed;
+/* Primary Buttons */
+button#startBtn, .btn.primary, #submitBtn {
+    background: linear-gradient(90deg, #36b7ff, #1d62b8);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.1);
+    margin-top: 20px;
 }
 
-button:hover:enabled {
-    background: #00e6b3;
+button#startBtn:hover,
+.btn.primary:hover,
+#submitBtn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+    background: linear-gradient(90deg, #23d0b3, #1a50a0);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+button#startBtn:active,
+.btn.primary:active,
+#submitBtn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
+/* Secondary / Ghost Buttons */
+button#prevBtn, button#nextBtn, #retryBtn, #backBtn, .btn.ghost {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+button#prevBtn:hover,
+button#nextBtn:hover,
+#retryBtn:hover,
+#backBtn:hover,
+.btn.ghost:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
+/* Options / Answer Buttons — more visible and animated */
+.options button {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+    margin: 8px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff; 
+    background: rgba(25,78,161,0.7);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.options button:hover {
+    background: rgba(25,78,161,0.85);
+    transform: translateY(-2px) scale(1.01);
+    border-color: var(--accent);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+}
+
+.options button.selected {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent-2);
+    box-shadow: 0 6px 20px rgba(54,183,255,0.4);
+}
+
+.options button.correct {
+    background: rgba(22,163,74,0.2);
+    border-color: rgba(22,163,74,0.5);
+}
+
+.options button.wrong {
+    background: rgba(239,68,68,0.2);
+    border-color: rgba(239,68,68,0.5);
+}
+
+/* Add subtle hover ripple effect for all buttons */
+button::after, .btn::after, .options button::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0.3;
+    pointer-events: none;
+    background: #fff;
+    transition: transform 0.4s, opacity 0.6s;
+}
+
+button:active::after, .btn:active::after, .options button:active::after {
+    transform: scale(2);
+    opacity: 0;
+}
+

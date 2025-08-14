@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CurricuLens - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">CurricuLens</div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="About/about.html">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li id="auth-btn"><a href="signin.html" class="signin-btn">Sign In</a></li>
+        <li id="profile" class="hidden">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+            <span id="username-display"></span>
+        </li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Revolutionizing Education with AI</h1>
+        <p>Your one-stop academic assistant for doubt-solving, interactive learning, and AI-powered teaching.</p>
+        <a href="#projects" class="btn-primary">Explore Projects</a>
+        <a href="Quiz/quiz.html" class="btn-primary">Start Mega Quiz</a>
+    </div>
+</header>
+
+<section class="intro">
+    <h2>📌 Problem Statement</h2>
+    <p>
+        Many students miss crucial lessons due to illness, emergencies, or scheduling conflicts.
+        Catching up is often a struggle without personalized, interactive help. 
+        CurricuLens solves this with AI-powered tools that explain concepts visually, 
+        answer doubts instantly, and make learning engaging.
+    </p>
+</section>
+
+<section class="projects" id="projects">
+    <div class="card" onclick="openProject('http://127.0.0.1:7860')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHMAX3MkWQFv4lJCz5n_grjGUOQw9pCVCmHQ&s" alt="Doubt Solver">
+        <div class="card-content">
+            <h3>Doubt Solver & Test Solver</h3>
+            <p>Instant solutions to academic problems with AI explanations.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openProject('SST Map/indexSST.html')">
+        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?fit=crop&w=800&q=80" alt="SST Map">
+        <div class="card-content">
+            <h3>SST Interactive Map</h3>
+            <p>Explore historical events and geography visually.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openProject()">
+        <img src="https://images.unsplash.com/photo-1606206873764-fd15e242df52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGFib3JhdG9yeXxlbnwwfHwwfHx8MA%3D%3D" alt="AI Teacher">
+        <div class="card-content">
+            <h3>Lab Equipment Detector</h3>
+            <p>Identify and learn to use any pieace of Lab Equipment using AI.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 CurricuLens. All Rights Reserved.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

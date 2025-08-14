@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Curriculens Quiz</title>
-<link rel="stylesheet" href="quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurricuLens Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="quiz-container">
-    <header>
-        <h1>Curriculens Mega Quiz</h1>
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="timer" id="timer">Time: 30s</div>
-    </header>
-    <main id="quiz">
-    </main>
-    <footer>
-        <button id="nextBtn" disabled>Next</button>
-    </footer>
-</div>
-<script src="quiz.js"></script>
+    <div class="container">
+        <header>
+            <h1>CurricuLens Mega Quiz</h1>
+        </header>
+
+        <section id="intro">
+            <p>Test your knowledge! Each session gives you 10 random questions from a pool of 100.</p>
+            <button id="startBtn">Start Quiz</button>
+        </section>
+
+        <section id="quiz" class="hidden">
+            <div class="quiz-header">
+                <span id="questionCounter"></span>
+                <span id="timer"></span>
+            </div>
+            <h2 id="questionText"></h2>
+            <div id="options"></div>
+            <div class="quiz-nav">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+                <button id="submitBtn" class="primary">Submit Quiz</button>
+            </div>
+        </section>
+
+        <section id="result" class="hidden">
+            <h2>Quiz Result</h2>
+            <p id="scoreBox"></p>
+            <div id="reviewList"></div>
+            <button id="retryBtn">Try Again</button>
+            <button id="backBtn">Back to Home</button>
+        </section>
+    </div>
+    <script src="quiz.js"></script>
 </body>
 </html>
